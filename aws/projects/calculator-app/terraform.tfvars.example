@@ -1,0 +1,25 @@
+# ------------------------------------------------------------------------------
+# Calculator App (Amplify) - Example Variables
+# Copy to terraform.tfvars and customize
+# ------------------------------------------------------------------------------
+
+aws_region  = "us-east-1"
+environment = "dev"
+
+# Repository
+repository_url = "https://github.com/dspinozz/calculator-app-react-native-expo"
+branch_name    = "main"
+
+# GitHub token (required for Amplify to access repo)
+# github_access_token = "ghp_xxxxxxxxxxxx"
+
+# Application
+api_url     = ""
+app_version = "1.0.0"
+
+# Features
+enable_pr_preview = false
+
+# Custom domain (optional)
+# domain_name      = "example.com"
+# subdomain_prefix = "calc"

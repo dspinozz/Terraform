@@ -1,0 +1,22 @@
+# ------------------------------------------------------------------------------
+# Audit Log Aggregator - Example Variables
+# Copy to terraform.tfvars and customize
+# ------------------------------------------------------------------------------
+
+aws_region  = "us-east-1"
+environment = "dev"
+
+# Container
+container_image = "ghcr.io/dspinozz/audit-log-aggregator:latest"
+cpu             = 256
+memory          = 512
+
+# Service scaling
+desired_count      = 1
+enable_autoscaling = false
+
+# Application config
+database_url   = "sqlite:///data/audit.db"
+cors_origins   = "*"
+# jwt_secret   = "your-secret-here"  # Set via environment or secrets
+rate_limit_rps = 100

@@ -1,0 +1,22 @@
+# ------------------------------------------------------------------------------
+# Shared Infrastructure - Example Variables
+# Copy this file to terraform.tfvars and customize
+# ------------------------------------------------------------------------------
+
+aws_region   = "us-east-1"
+project_name = "portfolio"
+environment  = "dev"
+
+# VPC Configuration
+vpc_cidr           = "10.0.0.0/16"
+az_count           = 2
+enable_nat_gateway = true
+single_nat_gateway = true  # Set to false for prod (HA)
+
+# Logging
+enable_flow_logs          = false
+enable_container_insights = true
+log_retention_days        = 30
+
+# HTTPS (optional - requires ACM certificate)
+# certificate_arn = "arn:aws:acm:us-east-1:123456789012:certificate/abc123"

@@ -1,0 +1,62 @@
+# Terraform
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+
+# Secrets and credentials
+*.tfvars
+!*.tfvars.example
+*.auto.tfvars
+secrets.tf
+
+# Local development
+.DS_Store
+*.swp
+*.swo
+*~
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# CLI configuration
+.terraformrc
+terraform.rc
+
+# Sensitive files
+*.pem
+*.key
+*.crt
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# AI development artifacts
+.cursor/
+.cursorignore
+.aider*
+.claude*
+.copilot/
+.continue/
+.codeium/
+
+# Misc
+node_modules/
+*.log
+*.tmp
+*.bak

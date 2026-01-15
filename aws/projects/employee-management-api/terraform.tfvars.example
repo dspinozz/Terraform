@@ -1,0 +1,22 @@
+# ------------------------------------------------------------------------------
+# Employee Management API - Example Variables
+# Copy to terraform.tfvars and customize
+# ------------------------------------------------------------------------------
+
+aws_region  = "us-east-1"
+environment = "dev"
+
+# Container
+container_image = "ghcr.io/dspinozz/employee-management-api:latest"
+cpu             = 256
+memory          = 512
+
+# Service scaling
+desired_count      = 1
+enable_autoscaling = false
+
+# Application config
+database_url = "sqlite:///data/employees.db"
+# jwt_secret = "your-secret-here"
+jwt_expiry   = "24h"
+cors_origins = "*"

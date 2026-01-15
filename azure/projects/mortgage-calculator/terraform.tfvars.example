@@ -1,0 +1,25 @@
+# ------------------------------------------------------------------------------
+# Mortgage Calculator - Example Variables
+# Copy this file to terraform.tfvars and customize
+# ------------------------------------------------------------------------------
+
+location     = "eastus"
+project_name = "portfolio"
+environment  = "dev"
+
+# Container Configuration
+container_image = "ghcr.io/dspinozz/mortgage-calculator:latest"
+cpu             = 0.25
+memory          = "0.5Gi"
+
+# Scaling (set min_replicas = 0 for cost savings)
+min_replicas = 0
+max_replicas = 3
+
+# Application Settings
+# flask_secret_key = "your-secret-key-here"
+tax_rate_default       = 0.25
+investment_rate_default = 0.07
+
+# Logging
+log_retention_days = 30
