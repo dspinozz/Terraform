@@ -31,6 +31,10 @@ Production-ready Terraform infrastructure for a multi-application portfolio depl
 │  │  │  │audit-log-   │ │employee-    │ │project-     │ │php-rest-api │ │  │ │
 │  │  │  │aggregator   │ │management   │ │management   │ │             │ │  │ │
 │  │  │  └─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘ │  │ │
+│  │  │  ┌─────────────┐                                                 │  │ │
+│  │  │  │spring-boot- │                                                 │  │ │
+│  │  │  │task-api     │                                                 │  │ │
+│  │  │  └─────────────┘                                                 │  │ │
 │  │  └──────────────────────────────────────────────────────────────────┘  │ │
 │  └────────────────────────────────────────────────────────────────────────┘ │
 │                                                                             │
@@ -71,6 +75,7 @@ terraform-cloud-infrastructure/
 │       ├── employee-management-api/
 │       ├── project-management-system/
 │       ├── php-rest-api/
+│       ├── spring-boot-task-api/
 │       └── calculator-app/
 ├── azure/
 │   ├── modules/
@@ -93,6 +98,7 @@ terraform-cloud-infrastructure/
 | employee-management-api | AWS | ECS Fargate | Go | REST API with JWT auth |
 | project-management-system | AWS | ECS Fargate | C# | ASP.NET Core API |
 | php-rest-api | AWS | ECS Fargate | PHP | Framework-agnostic REST API |
+| spring-boot-task-api | AWS | ECS Fargate | Java | Personal task management with Spring Boot |
 | calculator-app | AWS | Amplify | TypeScript | React Native cross-platform app |
 | mortgage-calculator | Azure | Container Apps | Python | Financial comparison tool |
 
@@ -144,11 +150,11 @@ terraform apply
 | Resource | Monthly Cost (Dev) | Monthly Cost (Prod) |
 |----------|-------------------|---------------------|
 | AWS VPC + NAT Gateway | ~$32 | ~$32 |
-| ECS Fargate (4 services) | ~$15 | ~$60 |
+| ECS Fargate (5 services) | ~$20 | ~$75 |
 | ALB | ~$16 | ~$16 |
 | AWS Amplify | Free tier | ~$5 |
 | Azure Container Apps | ~$0 (free tier) | ~$10 |
-| **Total** | **~$63/month** | **~$123/month** |
+| **Total** | **~$68/month** | **~$138/month** |
 
 *Note: Costs can be reduced by destroying resources when not in use.*
 

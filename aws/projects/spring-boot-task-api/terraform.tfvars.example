@@ -1,0 +1,30 @@
+# ------------------------------------------------------------------------------
+# Spring Boot Task API - Example Variables
+# Copy to terraform.tfvars and customize
+# ------------------------------------------------------------------------------
+
+aws_region  = "us-east-1"
+environment = "dev"
+
+# Container - Java/Spring Boot requires more resources than Go/Rust
+container_image = "ghcr.io/dspinozz/spring-boot-task-api:latest"
+cpu             = 512
+memory          = 1024
+
+# Service scaling
+desired_count      = 1
+enable_autoscaling = false
+
+# Spring Boot config
+spring_profile = "default"
+java_opts      = "-Xmx768m -Xms256m"
+
+# Database - H2 for dev, PostgreSQL for prod
+database_url      = "jdbc:h2:mem:taskdb"
+database_username = "sa"
+# database_password = ""
+
+# For production with RDS PostgreSQL:
+# database_url      = "jdbc:postgresql://your-rds-endpoint:5432/taskdb"
+# database_username = "taskapi"
+# database_password = "your-secure-password"
