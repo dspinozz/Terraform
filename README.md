@@ -31,10 +31,10 @@ Production-ready Terraform infrastructure for a multi-application portfolio depl
 │  │  │  │audit-log-   │ │employee-    │ │project-     │ │php-rest-api │ │  │ │
 │  │  │  │aggregator   │ │management   │ │management   │ │             │ │  │ │
 │  │  │  └─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘ │  │ │
-│  │  │  ┌─────────────┐                                                 │  │ │
-│  │  │  │spring-boot- │                                                 │  │ │
-│  │  │  │task-api     │                                                 │  │ │
-│  │  │  └─────────────┘                                                 │  │ │
+│  │  │  ┌─────────────┐ ┌─────────────┐                                 │  │ │
+│  │  │  │spring-boot- │ │django-      │                                 │  │ │
+│  │  │  │task-api     │ │health-api   │                                 │  │ │
+│  │  │  └─────────────┘ └─────────────┘                                 │  │ │
 │  │  └──────────────────────────────────────────────────────────────────┘  │ │
 │  └────────────────────────────────────────────────────────────────────────┘ │
 │                                                                             │
@@ -72,6 +72,7 @@ terraform-cloud-infrastructure/
 │   └── projects/
 │       ├── shared-infrastructure/  # VPC, ECS cluster, shared resources
 │       ├── audit-log-aggregator/
+│       ├── django-health-metrics-api/  # NEW
 │       ├── employee-management-api/
 │       ├── project-management-system/
 │       ├── php-rest-api/
@@ -95,6 +96,7 @@ terraform-cloud-infrastructure/
 | Application | Cloud | Service | Language | Description |
 |-------------|-------|---------|----------|-------------|
 | audit-log-aggregator | AWS | ECS Fargate | Rust | High-performance audit log system |
+| django-health-metrics-api | AWS | ECS Fargate | Python | Health metrics tracking with Django REST Framework |
 | employee-management-api | AWS | ECS Fargate | Go | REST API with JWT auth |
 | project-management-system | AWS | ECS Fargate | C# | ASP.NET Core API |
 | php-rest-api | AWS | ECS Fargate | PHP | Framework-agnostic REST API |
@@ -130,7 +132,8 @@ terraform apply
 ### 3. Deploy Individual Services
 
 ```bash
-cd aws/projects/audit-log-aggregator
+# Example: Deploy Django Health Metrics API
+cd aws/projects/django-health-metrics-api
 terraform init
 terraform plan
 terraform apply
@@ -150,11 +153,11 @@ terraform apply
 | Resource | Monthly Cost (Dev) | Monthly Cost (Prod) |
 |----------|-------------------|---------------------|
 | AWS VPC + NAT Gateway | ~$32 | ~$32 |
-| ECS Fargate (5 services) | ~$20 | ~$75 |
+| ECS Fargate (6 services) | ~$24 | ~$90 |
 | ALB | ~$16 | ~$16 |
 | AWS Amplify | Free tier | ~$5 |
 | Azure Container Apps | ~$0 (free tier) | ~$10 |
-| **Total** | **~$68/month** | **~$138/month** |
+| **Total** | **~$72/month** | **~$153/month** |
 
 *Note: Costs can be reduced by destroying resources when not in use.*
 
