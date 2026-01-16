@@ -56,16 +56,21 @@ module "database" {
   source = "../../modules/rds-postgres"
   count  = var.use_rds ? 1 : 0
 
-  name               = "django-health-db"
-  vpc_id             = data.terraform_remote_state.shared.outputs.vpc_id
-  subnet_ids         = data.terraform_remote_state.shared.outputs.private_subnet_ids
-  security_group_ids = [data.terraform_remote_state.shared.outputs.rds_security_group_id]
+  name       = "django-health-db"
+  vpc_id     = data.terraform_remote_state.shared.outputs.vpc_id
+  subnet_ids = data.terraform_remote_state.shared.outputs.private_subnet_ids
+
+  allowed_security_group_ids = [data.terraform_remote_state.shared.outputs.ecs_tasks_security_group_id]
 
   instance_class    = var.db_instance_class
   allocated_storage = var.db_allocated_storage
   database_name     = "healthmetrics"
-  username          = var.db_username
-  password          = var.db_password
+  master_username   = var.db_username
+  master_password   = var.db_password
+
+  # Development settings
+  skip_final_snapshot = var.environment != "prod"
+  deletion_protection = var.environment == "prod"
 
   tags = {
     Application = "django-health-metrics-api"
@@ -109,7 +114,7 @@ module "service" {
   create_alb_target_group = true
   listener_arn            = data.terraform_remote_state.shared.outputs.http_listener_arn
   listener_rule_priority  = 300
-  path_patterns           = ["/api/v1/*", "/admin/*", "/health/*"]
+  path_patterns           = ["/api/v1/*", "/admin/*"]
   health_check_path       = "/"
   health_check_matcher    = "200"
 

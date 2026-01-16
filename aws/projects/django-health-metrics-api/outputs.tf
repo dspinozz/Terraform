@@ -29,5 +29,11 @@ output "log_group_name" {
 
 output "database_endpoint" {
   description = "RDS database endpoint (if enabled)"
-  value       = var.use_rds ? module.database[0].endpoint : "Using SQLite"
+  value       = var.use_rds ? module.database[0].endpoint : "SQLite (embedded)"
+}
+
+output "database_connection_url" {
+  description = "Database connection URL (sensitive)"
+  value       = var.use_rds ? module.database[0].connection_url : var.database_url
+  sensitive   = true
 }
