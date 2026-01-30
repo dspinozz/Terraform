@@ -4,6 +4,9 @@ Production-ready Terraform infrastructure for a multi-application portfolio depl
 
 ## Architecture Overview
 
+> **Note**: The architecture diagram shows 3 availability zones for production. The default configuration uses 2 AZs for development environments. Set `az_count = 3` in `shared-infrastructure/variables.tf` for production deployments.
+
+
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                              AWS (Primary)                                   │
@@ -77,6 +80,7 @@ terraform-cloud-infrastructure/
 │       ├── project-management-system/
 │       ├── php-rest-api/
 │       ├── spring-boot-task-api/
+│       ├── portfolio-app/              # Main portfolio website/application
 │       └── calculator-app/
 ├── azure/
 │   ├── modules/
@@ -101,6 +105,7 @@ terraform-cloud-infrastructure/
 | project-management-system | AWS | ECS Fargate | C# | ASP.NET Core API |
 | php-rest-api | AWS | ECS Fargate | PHP | Framework-agnostic REST API |
 | spring-boot-task-api | AWS | ECS Fargate | Java | Personal task management with Spring Boot |
+| portfolio-app | AWS | ECS Fargate | Multi | Main portfolio website/application |
 | calculator-app | AWS | Amplify | TypeScript | React Native cross-platform app |
 | mortgage-calculator | Azure | Container Apps | Python | Financial comparison tool |
 
@@ -147,6 +152,23 @@ terraform init
 terraform plan
 terraform apply
 ```
+
+
+## Deployment Verification
+
+The infrastructure has been successfully tested and verified:
+
+✅ **Shared Infrastructure** (January 2025)
+- VPC with public/private subnets (2 AZs)
+- NAT Gateway and Internet Gateway
+- ECS Cluster (`portfolio-dev`) - ACTIVE
+- Application Load Balancer with HTTP listener
+- Security groups and IAM roles configured
+- **Deployment Time**: ~3 minutes (normal for NAT Gateway + ALB provisioning)
+- **Status**: Fully functional, tested with `terraform apply` and `terraform destroy`
+
+See [Deployment Risks and Ingress Analysis](./docs/deployment-risks-and-ingress.md) for detailed deployment information.
+
 
 ## Cost Estimation
 
